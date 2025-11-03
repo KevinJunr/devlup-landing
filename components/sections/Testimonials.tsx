@@ -48,7 +48,7 @@ export function Testimonials() {
       avatar: "/assets/3d/Homme 1/Homme(1)_pose(1).png",
       content:
         "Devlup a complètement transformé notre façon d'enseigner. Les parents sont ravis de pouvoir suivre la progression de leurs enfants en temps réel. Notre taux de fidélisation a augmenté de 40% !",
-      rating: 5,
+      rating: 4,
     },
     {
       name: "Sophie Martin",
@@ -66,7 +66,7 @@ export function Testimonials() {
       avatar: "/assets/3d/Homme 2/Homme(2)_pose(1).png",
       content:
         "L'application est intuitive et complète. Mes élèves sont plus motivés grâce au système de niveaux. Les notifications automatiques pour les parents sont un vrai plus.",
-      rating: 5,
+      rating: 4,
     },
     {
       name: "Julie Bernard",
@@ -148,10 +148,12 @@ export function Testimonials() {
 
                         {/* Rating */}
                         <div className="flex gap-1 mb-4">
-                          {[...Array(testimonial.rating)].map((_, i) => (
+                          {[...Array(5)].map((_, i) => (
                             <Star
                               key={i}
-                              className="w-5 h-5 fill-orange-solid text-orange-solid"
+                              className="w-5 h-5"
+                              fill={i < testimonial.rating ? "#FF6A00" : "transparent"}
+                              stroke={i < testimonial.rating ? "#FF6A00" : "rgba(254, 252, 255, 0.3)"}
                             />
                           ))}
                         </div>

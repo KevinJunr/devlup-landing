@@ -2,33 +2,22 @@
 
 import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
+import { Aurora } from "@/components/ui/Aurora";
 import { motion } from "framer-motion";
 import { ArrowRight, Play, TrendingUp, Users, Star } from "lucide-react";
 import Image from "next/image";
 
 export function Hero() {
   return (
-    <div className="relative min-h-screen flex items-center justify-center overflow-hidden pt-20">
-      {/* Background gradient with multiple color spots */}
-      <div
-        className="absolute inset-0"
-        style={{
-          background: `
-            radial-gradient(circle at top right, rgba(255, 106, 0, 0.78) 0%, transparent 40%),
-            radial-gradient(circle at bottom left, rgba(135, 206, 250, 0.18) 0%, transparent 50%),
-            radial-gradient(circle at top left , rgba(225, 0, 255, 0.4) 0%, transparent 40%),
-            #1B112C
-          `
-        }}
-      />
-
-      {/* Background decorative elements - more vibrant */}
-      <div className="absolute inset-0 overflow-hidden">
-        <div className="absolute top-1/4 -right-48 w-[600px] h-[600px] bg-orange-solid/30 rounded-full blur-3xl animate-pulse" />
-        <div className="absolute bottom-1/4 -left-48 w-[600px] h-[600px] bg-aqua-solid/30 rounded-full blur-3xl animate-pulse" style={{ animationDelay: '1s' }} />
-        <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[700px] h-[700px] bg-rose-solid/20 rounded-full blur-3xl animate-pulse" style={{ animationDelay: '2s' }} />
-        <div className="absolute top-10 left-1/4 w-[400px] h-[400px] bg-gradient-to-r from-orange-solid/20 to-rose-solid/20 rounded-full blur-3xl" />
-        <div className="absolute bottom-10 right-1/4 w-[400px] h-[400px] bg-gradient-to-l from-aqua-solid/25 to-rose-solid/15 rounded-full blur-3xl" />
+    <div className="relative min-h-screen flex items-center justify-center overflow-hidden pt-20 bg-bg-dark">
+      {/* Animated Aurora Background */}
+      <div className="absolute inset-0">
+        <Aurora
+          colorStops={["#FF6A00", "#87CEFA", "#E100FF"]}
+          blend={1.0}
+          amplitude={1.0}
+          speed={3.2}
+        />
       </div>
 
       <div className="container mx-auto px-4 lg:px-8 relative z-10">
@@ -152,7 +141,7 @@ export function Hero() {
                 <div
                   className="absolute inset-0 rounded-3xl backdrop-blur-xl border border-white/10 flex items-end justify-center overflow-hidden"
                   style={{
-                    background: 'linear-gradient(45deg, #1B112C 30%, #211c3aff 55%)'
+                    background: 'linear-gradient(45deg, #1B112C 30%, #1B112C 55%)'
                   }}
                 >
                   <Image

@@ -1,7 +1,7 @@
 "use client";
 
 import { Section } from "@/components/layout/Section";
-import { Card } from "@/components/ui/card";
+import SpotlightCard from "@/components/SpotlightCard";
 import { motion } from "framer-motion";
 import { useInView } from "react-intersection-observer";
 import {
@@ -129,7 +129,16 @@ export function Features() {
         >
           {features.map((feature, index) => (
             <motion.div key={index} variants={itemVariants}>
-              <Card className="p-6 bg-card/50 backdrop-blur-lg border border-white/10 hover:border-white/20 transition-all h-full group hover:scale-105 hover:shadow-lg">
+              <SpotlightCard
+                className="h-full backdrop-blur-lg transition-all group hover:scale-105"
+                spotlightColor={
+                  feature.gradient === "orange"
+                    ? "rgba(255, 106, 0, 0.52)"
+                    : feature.gradient === "aqua"
+                    ? "rgba(135, 206, 250, 0.59)"
+                    : "rgba(225, 0, 255, 0.57)"
+                }
+              >
                 <div className="flex flex-col h-full">
                   <div
                     className={`w-12 h-12 rounded-xl bg-${feature.gradient}-gradient flex items-center justify-center mb-4 group-hover:scale-110 transition-transform`}
@@ -143,7 +152,7 @@ export function Features() {
                     {feature.description}
                   </p>
                 </div>
-              </Card>
+              </SpotlightCard>
             </motion.div>
           ))}
         </motion.div>

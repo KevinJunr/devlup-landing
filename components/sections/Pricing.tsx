@@ -6,7 +6,7 @@ import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
 import { motion } from "framer-motion";
 import { useInView } from "react-intersection-observer";
-import { Check } from "lucide-react";
+import { Check, Star } from "lucide-react";
 import Image from "next/image";
 
 export function Pricing() {
@@ -37,7 +37,7 @@ export function Pricing() {
       price: "19",
       period: "mois",
       description: "Économisez 120€ par an",
-      badge: "POPULAIRE",
+      badge: "⭐ PRÉFÉRÉ",
       features: [
         "Tout du plan mensuel",
         "Jusqu'à 300 élèves",
@@ -149,15 +149,23 @@ export function Pricing() {
           {plans.map((plan, index) => (
             <motion.div key={index} variants={itemVariants}>
               <Card
-                className={`p-8 bg-card/50 backdrop-blur-lg border ${
+                className={`p-8 backdrop-blur-lg border-[3px] overflow-visible ${
                   plan.popular
-                    ? "border-orange-solid/50 ring-2 ring-orange-solid/30 scale-105"
-                    : "border-white/10"
-                } hover:border-white/20 transition-all h-full flex flex-col relative`}
+                    ? "border-orange-solid bg-[#241C46] scale-105 shadow-2xl shadow-orange-solid/50"
+                    : "border-white/10 bg-[#241C46] hover:border-white/20"
+                } transition-all h-full flex flex-col relative group`}
+                style={plan.popular ? {
+                  borderColor: '#FF6A00'
+                } : undefined}
               >
                 {plan.badge && (
-                  <div className="absolute -top-4 left-1/2 -translate-x-1/2">
-                    <Badge className="bg-orange-gradient text-white px-4 py-1 font-semibold">
+                  <div className="absolute -top-5 left-1/2 -translate-x-1/2 z-10">
+                    <Badge
+                      className="text-white px-8 py-2.5 font-bold text-base shadow-2xl shadow-orange-solid/60"
+                      style={{
+                        backgroundColor: '#FF6A00'
+                      }}
+                    >
                       {plan.badge}
                     </Badge>
                   </div>
@@ -199,12 +207,24 @@ export function Pricing() {
                 </ul>
 
                 <Button
-                  className={`w-full ${
-                    plan.popular
-                      ? "bg-orange-gradient hover:scale-105"
-                      : "bg-card border border-white/20 hover:bg-white/10"
-                  } transition-all`}
                   size="lg"
+                  className="w-full bg-transparent border-2 border-white/20 text-white font-semibold hover:scale-105 transition-all duration-300"
+                  onMouseEnter={(e) => {
+                    if (plan.popular) {
+                      e.currentTarget.style.background = 'linear-gradient(to right, #FF6A00, #FF8834, #FF6A00)';
+                      e.currentTarget.style.borderColor = '#FF6A00';
+                      e.currentTarget.style.boxShadow = '0 20px 25px -5px rgba(255, 106, 0, 0.7)';
+                    } else {
+                      e.currentTarget.style.backgroundColor = '#E100FF';
+                      e.currentTarget.style.borderColor = '#E100FF';
+                      e.currentTarget.style.boxShadow = '0 20px 25px -5px rgba(225, 0, 255, 0.5)';
+                    }
+                  }}
+                  onMouseLeave={(e) => {
+                    e.currentTarget.style.background = 'transparent';
+                    e.currentTarget.style.borderColor = 'rgba(255, 255, 255, 0.2)';
+                    e.currentTarget.style.boxShadow = 'none';
+                  }}
                 >
                   {plan.cta}
                 </Button>
