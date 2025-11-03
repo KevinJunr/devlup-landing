@@ -13,7 +13,7 @@ export function Header() {
       <div className="container mx-auto px-4 lg:px-8">
         <div className="flex items-center justify-between h-20">
           {/* Logo */}
-          <div className="flex items-center">
+          <div className="flex items-center gap-3">
             <Image
               src="/assets/logo/Logo vecto1.svg"
               alt="Devlup"
@@ -21,6 +21,7 @@ export function Header() {
               height={40}
               className="h-10 w-auto"
             />
+            <span className="text-2xl font-bold text-foreground">Devlup</span>
           </div>
 
           {/* Desktop Navigation */}
@@ -47,9 +48,6 @@ export function Header() {
 
           {/* CTA Buttons */}
           <div className="hidden md:flex items-center gap-4">
-            <Button variant="ghost" className="text-foreground">
-              Connexion
-            </Button>
             <Button className="bg-orange-gradient hover:scale-105 transition-transform">
               Essai gratuit
             </Button>
@@ -91,9 +89,6 @@ export function Header() {
                 Témoignages
               </a>
               <div className="flex flex-col gap-3 pt-4">
-                <Button variant="ghost" className="text-foreground">
-                  Connexion
-                </Button>
                 <Button className="bg-orange-gradient">
                   Essai gratuit
                 </Button>

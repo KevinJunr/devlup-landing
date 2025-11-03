@@ -8,12 +8,27 @@ import Image from "next/image";
 
 export function Hero() {
   return (
-    <div className="relative min-h-screen flex items-center justify-center overflow-hidden bg-bg-dark pt-20">
-      {/* Background decorative elements */}
+    <div className="relative min-h-screen flex items-center justify-center overflow-hidden pt-20">
+      {/* Background gradient with multiple color spots */}
+      <div
+        className="absolute inset-0"
+        style={{
+          background: `
+            radial-gradient(circle at top right, rgba(255, 106, 0, 0.78) 0%, transparent 40%),
+            radial-gradient(circle at bottom left, rgba(135, 206, 250, 0.18) 0%, transparent 50%),
+            radial-gradient(circle at top left , rgba(225, 0, 255, 0.4) 0%, transparent 40%),
+            #1B112C
+          `
+        }}
+      />
+
+      {/* Background decorative elements - more vibrant */}
       <div className="absolute inset-0 overflow-hidden">
-        <div className="absolute top-1/4 -right-48 w-96 h-96 bg-orange-solid/20 rounded-full blur-3xl" />
-        <div className="absolute bottom-1/4 -left-48 w-96 h-96 bg-aqua-solid/20 rounded-full blur-3xl" />
-        <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-96 h-96 bg-rose-solid/10 rounded-full blur-3xl" />
+        <div className="absolute top-1/4 -right-48 w-[600px] h-[600px] bg-orange-solid/30 rounded-full blur-3xl animate-pulse" />
+        <div className="absolute bottom-1/4 -left-48 w-[600px] h-[600px] bg-aqua-solid/30 rounded-full blur-3xl animate-pulse" style={{ animationDelay: '1s' }} />
+        <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[700px] h-[700px] bg-rose-solid/20 rounded-full blur-3xl animate-pulse" style={{ animationDelay: '2s' }} />
+        <div className="absolute top-10 left-1/4 w-[400px] h-[400px] bg-gradient-to-r from-orange-solid/20 to-rose-solid/20 rounded-full blur-3xl" />
+        <div className="absolute bottom-10 right-1/4 w-[400px] h-[400px] bg-gradient-to-l from-aqua-solid/25 to-rose-solid/15 rounded-full blur-3xl" />
       </div>
 
       <div className="container mx-auto px-4 lg:px-8 relative z-10">
@@ -33,7 +48,7 @@ export function Hero() {
               className="inline-block mb-6"
             >
               <Badge className="bg-orange-glass-light border-orange-solid/30 text-white px-4 py-2 text-sm">
-                🎾 N°1 des écoles de tennis modernes
+                🎾 La meilleure expérience de suivi pédagogique
               </Badge>
             </motion.div>
 
@@ -44,7 +59,7 @@ export function Hero() {
               transition={{ delay: 0.3 }}
               className="text-4xl md:text-5xl lg:text-6xl font-bold text-white mb-6 leading-tight"
             >
-              Transformez votre{" "}
+              Modernisez votre{" "}
               <span className="text-gradient-orange">
                 école de tennis
               </span>{" "}
@@ -72,18 +87,24 @@ export function Hero() {
             >
               <Button
                 size="lg"
-                className="bg-orange-gradient hover:scale-105 transition-all shadow-lg shadow-orange-solid/30 text-white font-semibold group"
+                className="relative overflow-hidden bg-gradient-to-r from-orange-solid via-rose-solid to-orange-light hover:scale-110 transition-all duration-300 shadow-2xl shadow-orange-solid/50 text-white font-bold text-lg px-10 py-7 group border-2 border-orange-light/50 hover:border-orange-light hover:shadow-rose-solid/50"
               >
-                Essayer gratuitement 1 mois
-                <ArrowRight className="ml-2 group-hover:translate-x-1 transition-transform" />
-              </Button>
-              <Button
-                size="lg"
-                variant="outline"
-                className="border-white/20 text-white hover:bg-white/10 backdrop-blur group"
-              >
-                <Play className="mr-2 group-hover:scale-110 transition-transform" />
-                Voir une démo
+                <span className="relative z-10 flex items-center text-xl">
+                  Essayer gratuitement 1 mois
+                  <ArrowRight className="ml-3 group-hover:translate-x-2 transition-transform" size={24} />
+                </span>
+                {/* Animated glow effect */}
+                <motion.div
+                  className="absolute inset-0 bg-gradient-to-r from-transparent via-white/30 to-transparent"
+                  animate={{
+                    x: ['-100%', '100%'],
+                  }}
+                  transition={{
+                    duration: 2,
+                    repeat: Infinity,
+                    ease: 'linear',
+                  }}
+                />
               </Button>
             </motion.div>
 
@@ -128,9 +149,14 @@ export function Hero() {
             <div className="relative">
               {/* 3D Character with glassmorphism background */}
               <div className="relative w-full aspect-square">
-                <div className="absolute inset-0 bg-gradient-to-br from-orange-solid/20 to-aqua-solid/20 rounded-3xl backdrop-blur-xl border border-white/10 flex items-end justify-center overflow-hidden">
+                <div
+                  className="absolute inset-0 rounded-3xl backdrop-blur-xl border border-white/10 flex items-end justify-center overflow-hidden"
+                  style={{
+                    background: 'linear-gradient(45deg, #1B112C 30%, #211c3aff 55%)'
+                  }}
+                >
                   <Image
-                    src="/assets/3d/Homme 1/Homme(1)_pose(2).png"
+                    src="/assets/screenshots/captures-devlup--5--1pw1jn-750.webp"
                     alt="Devlup App"
                     width={600}
                     height={600}
