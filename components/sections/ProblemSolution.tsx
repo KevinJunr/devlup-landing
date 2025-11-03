@@ -1,0 +1,189 @@
+"use client";
+
+import { Section } from "@/components/layout/Section";
+import { Card } from "@/components/ui/card";
+import { motion } from "framer-motion";
+import { useInView } from "react-intersection-observer";
+import { Clock, MessageSquareOff, TrendingDown, Sparkles } from "lucide-react";
+import Image from "next/image";
+
+export function ProblemSolution() {
+  const [ref, inView] = useInView({
+    triggerOnce: true,
+    threshold: 0.1,
+  });
+
+  const problems = [
+    {
+      icon: Clock,
+      title: "Gestion manuelle chronophage",
+      description:
+        "Des heures perdues à gérer les plannings, suivis et évaluations manuellement.",
+    },
+    {
+      icon: MessageSquareOff,
+      title: "Communication difficile",
+      description:
+        "Difficulté à maintenir un contact régulier avec les parents et partager la progression.",
+    },
+    {
+      icon: TrendingDown,
+      title: "Suivi individuel complexe",
+      description:
+        "Impossible de suivre efficacement la progression de chaque élève dans le temps.",
+    },
+  ];
+
+  const solutions = [
+    {
+      title: "Centralisation totale",
+      description:
+        "Tous vos outils de gestion au même endroit : plannings, carnets, évaluations.",
+      gradient: "orange",
+    },
+    {
+      title: "Communication automatisée",
+      description:
+        "Notifications instantanées aux parents. Ils suivent la progression en temps réel.",
+      gradient: "aqua",
+    },
+    {
+      title: "Suivi personnalisé",
+      description:
+        "Carnets de compétences numériques avec historique complet pour chaque élève.",
+      gradient: "rose",
+    },
+  ];
+
+  const containerVariants = {
+    hidden: { opacity: 0 },
+    visible: {
+      opacity: 1,
+      transition: {
+        staggerChildren: 0.2,
+      },
+    },
+  };
+
+  const itemVariants = {
+    hidden: { opacity: 0, y: 20 },
+    visible: {
+      opacity: 1,
+      y: 0,
+      transition: { duration: 0.6 },
+    },
+  };
+
+  return (
+    <Section className="bg-fg-dark relative overflow-hidden" id="probleme">
+      {/* 3D Character - Femme positioned bottom left (visible on tablet+) */}
+      <motion.div
+        initial={{ opacity: 0, x: -100 }}
+        animate={inView ? { opacity: 1, x: 0 } : {}}
+        transition={{ delay: 0.8, duration: 0.8 }}
+        className="absolute bottom-0 -left-5 w-56 h-56 md:w-80 md:h-80 lg:w-96 lg:h-96 opacity-20 md:opacity-30 pointer-events-none hidden md:block"
+      >
+        <Image
+          src="/assets/3d/Femme 2/Femme(2)_pose(1).png"
+          alt="Tennis player"
+          width={400}
+          height={400}
+          className="object-contain"
+        />
+      </motion.div>
+
+      <div ref={ref} className="relative z-10">
+        {/* Problems Section */}
+        <motion.div
+          variants={containerVariants}
+          initial="hidden"
+          animate={inView ? "visible" : "hidden"}
+          className="text-center mb-16"
+        >
+          <motion.h2
+            variants={itemVariants}
+            className="text-3xl md:text-4xl lg:text-5xl font-bold text-white mb-6"
+          >
+            Les défis du{" "}
+            <span className="text-foreground/60">tennis moderne</span>
+          </motion.h2>
+          <motion.p
+            variants={itemVariants}
+            className="text-lg text-foreground/70 max-w-2xl mx-auto"
+          >
+            Vous passez plus de temps à gérer qu'à enseigner ?
+          </motion.p>
+        </motion.div>
+
+        <motion.div
+          variants={containerVariants}
+          initial="hidden"
+          animate={inView ? "visible" : "hidden"}
+          className="grid md:grid-cols-3 gap-6 mb-20"
+        >
+          {problems.map((problem, index) => (
+            <motion.div key={index} variants={itemVariants}>
+              <Card className="p-6 bg-card/50 backdrop-blur-lg border border-white/10 hover:border-white/20 transition-all h-full">
+                <div className="flex flex-col items-center text-center">
+                  <div className="w-14 h-14 rounded-2xl bg-red-500/10 flex items-center justify-center mb-4">
+                    <problem.icon className="w-7 h-7 text-red-400" />
+                  </div>
+                  <h3 className="text-lg font-semibold text-white mb-2">
+                    {problem.title}
+                  </h3>
+                  <p className="text-foreground/60 text-sm">
+                    {problem.description}
+                  </p>
+                </div>
+              </Card>
+            </motion.div>
+          ))}
+        </motion.div>
+
+        {/* Transition */}
+        <motion.div
+          initial={{ opacity: 0, scale: 0.9 }}
+          animate={inView ? { opacity: 1, scale: 1 } : {}}
+          transition={{ delay: 0.6, duration: 0.6 }}
+          className="text-center mb-16"
+        >
+          <div className="inline-flex items-center justify-center gap-3 bg-orange-gradient px-8 py-4 rounded-2xl">
+            <Sparkles className="w-6 h-6 text-white" />
+            <h3 className="text-2xl font-bold text-white">
+              Devlup change la donne
+            </h3>
+            <Sparkles className="w-6 h-6 text-white" />
+          </div>
+        </motion.div>
+
+        {/* Solutions Section */}
+        <motion.div
+          variants={containerVariants}
+          initial="hidden"
+          animate={inView ? "visible" : "hidden"}
+          className="grid md:grid-cols-3 gap-6"
+        >
+          {solutions.map((solution, index) => (
+            <motion.div key={index} variants={itemVariants}>
+              <Card
+                className={`p-8 bg-card/50 backdrop-blur-lg border border-white/10 hover:border-${solution.gradient}-solid/50 transition-all h-full group hover:scale-105 hover:shadow-xl hover:shadow-${solution.gradient}-solid/20`}
+              >
+                <div className="flex flex-col items-center text-center">
+                  <div
+                    className={`w-16 h-16 rounded-2xl bg-${solution.gradient}-gradient flex items-center justify-center mb-6 group-hover:scale-110 transition-transform`}
+                  >
+                    <Sparkles className="w-8 h-8 text-white" />
+                  </div>
+                  <h3 className="text-xl font-bold text-white mb-3">
+                    {solution.title}
+                  </h3>
+                  <p className="text-foreground/70">{solution.description}</p>
+                </div>
+              </Card>
+            </motion.div>
+          ))}
+        </motion.div>
+      </div>
+    </Section>
+  );
+}

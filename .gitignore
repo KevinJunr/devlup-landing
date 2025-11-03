@@ -39,3 +39,10 @@ yarn-error.log*
 # typescript
 *.tsbuildinfo
 next-env.d.ts
+
+# Claude Code configuration (local only)
+.claude/
+CLAUDE.md
+
+# Brand assets
+Brand Kit.pdf
